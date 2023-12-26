@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="style.css">
+  <title>Tetris</title>
+</head>
+<body>
+  <div class="wrapper">
+      <h3>тетріс</h3>
+    <div class="main">
+      <div class="nextFigures">
+        <div class="nextFigureSmall">f1</div>
+        <div class="nextFigureBig">f2</div>
+      </div>
+      <div class="playGround">
+      </div>
+      <div class="mainMenu">
+        <div class="count">
+          <h5>Pахунок</h5>
+          <div class="countScore"></div>
+        </div>
+        <div class="admin">
+          <button>Нова гра</button>
+          <button>Завершити</button>
+        </div>
+        
+      </div>
+    </div>
+    <div class="buttons">
+        <button class="btnLeft">Вліво</button>
+        <button class="rotate">Обернути</button>
+        <button class="btnRight">Вправо</button>
+        <button class="btnDown">Вниз</button>
+    </div>
+  </div>
+  <script>
+      <!-- намалювати поле і заповнити мінусами-->
+const columns = 20;
+const rows = 40;
+let ground = rows * columns;
+let playGround = document.querySelector(".playGround");
+for (let i = 0; i < ground; i++) {
+  let divGround = document.createElement("div");
+  divGround.classList.add("minus");
+  
+  playGround.appendChild(divGround);
+}
+
+   <!--намалювати фігури -->
+   const figures = [
+  {
+    name: "kvL",
+    shape: [
+      "+++",
+      "+++",
+      "+++"
+    ]
+  },
+  {
+    name: "kvM",
+    shape: [
+      "++",
+      "++"
+    ]
+  },
+  {
+    name: "kvS",
+    shape: [
+      "+"
+    ]
+  },
+  {
+    name: "liM",
+    shape: [
+      "++",
+      "--"
+    ]
+  },
+  {
+    name: "liL",
+    shape: [
+      "---",
+      "+++",
+      "---"
+    ]
+  },
+  {
+    name: "liXL",
+    shape: [
+      "----",
+      "++++",
+      "----",
+      "----"
+    ]
+  },
+  {
+    name: "liXXL",
+    shape: [
+      "-----",
+      "-----",
+      "+++++",
+      "-----",
+      "-----"
+    ]
+  },
+  {
+    name: "kutP",
+    shape: [
+      "+-",
+      "++"
+    ]
+  },
+  {
+    name: "kutVP",
+    shape: [
+      "+--",
+      "+--",
+      "+++"
+    ]
+  },
+  {
+    name: "kutL",
+    shape: [
+      "-+",
+      "++"
+    ]
+  },
+  {
+    name: "kutVL",
+    shape: [
+      "--+",
+      "--+",
+      "+++"
+    ]
+  },
+  {
+    name: "L",
+    shape: [
+      "-+-",
+      "-+-",
+      "-++"
+    ]
+  },
+  {
+    name: "J",
+    shape: [
+      "-+-",
+      "-+-",
+      "++-"
+    ]
+  },
+  {
+    name: "S",
+    shape: [
+      "-++",
+      "++-",
+      "---"
+    ]
+  },
+  {
+    name: "Z",
+    shape: [
+      "++-",
+      "-++",
+      "---"
+    ]
+  },
+  {
+    name: "T",
+    shape: [
+      "+++",
+      "-+-",
+      "---"
+    ]
+  }
+];
+
+const color = ["1", "2", "3", "4", "5"];
+
+    <!-- вибір рандомної фігури і кольору-->
+   
+   const randomFigure = figures[Math.floor(Math.random() * figures.length)]; 
+    console.log(randomFigure.shape);
+    
+   const randomColor = color[Math.floor(Math.random() * color.length)];
+   console.log(randomColor);
+
+<!--  оборот фігури -->
+function rotateFigure(figure){
+  const rotatedF = { name: figure.name, shape: [] }; 
+  for (let i = 0; i < figure.shape[0].length; i++){
+  let newRow = ""; 
+  for (let j = figure.shape.length - 1; j >= 0; j--){ 
+  newRow += figure.shape[j][i]; 
+  } 
+  rotatedF.shape.push(newRow); 
+  } 
+  return rotatedF; 
+  } 
+  let k = rotateFigure(randomFigure);
+
+
+  <!-- рандомний вибір кількості раз оборотів фігури -->
+   
+   function rotateRandomTimes() {
+  const rotations = Math.floor(Math.random() * 4) + 1;
+  let rotatedFigure = { shape: [...randomFigure.shape] };
+
+  for (let i = 0; i < rotations; i++) {
+    rotatedFigure = rotateFigure(rotatedFigure);
+  }
+  return rotatedFigure;
+}
+let currentFigure = rotateRandomTimes();
+
+
+
+<!-- очистити попереднє положення фігури -->
+
+function clearPreviousPosition(previousPosition, figureShape){ 
+   for (let i = 0; i < figureShape.length; i++){ 
+      for (let j = 0; j < figureShape[i].length; j++){ 
+         const currentIndex = previousPosition + i * columns + j; const cell = playGround.children[currentIndex];
+         cell.textContent = "";
+         cell.classList.remove("plus"); 
+         cell.classList.add("minus");
+       } 
+    } 
+ }
+
+<!-- намалювати фігуру -->
+
+function drawShape(currentFigure, targetPosition) {
+clearPreviousPosition(targetPosition, currentFigure.shape);
+  for (let i = 0; i < currentFigure.shape.length; i++) {
+    for (let j = 0; j < currentFigure.shape[i].length; j++) {
+      const currentIndex = targetPosition + i * columns + j;
+      const cell = playGround.children[currentIndex];
+
+      if (currentFigure.shape[i][j] === "+") {
+        cell.textContent = currentFigure.shape[i][j];
+        cell.classList.remove("minus");
+        cell.classList.add("plus");
+      } else if (currentFigure.shape[i][j] === "-") {
+        cell.textContent = currentFigure.shape[i][j];
+        cell.classList.add("minus");
+        cell.classList.remove("plus");
+      }
+    }
+  }
+
+  return { currentFigure, targetPosition };
+}
+
+let targetPosition = 9;
+drawShape(currentFigure, targetPosition);
+
+
+<!--  кнопка обертання фігури -->
+let btnRotate = document.querySelector(".rotate");
+btnRotate.addEventListener("click", function () {
+  currentFigure = rotateFigure(currentFigure); 
+  drawShape(currentFigure, targetPosition);
+
+});
+
+function moveOK(){
+  return true;
+}
+
+<!--кнопка руху фігури вправо -->
+let btnRight = document.querySelector(".btnRight");
+btnRight.addEventListener("click", function () {
+  
+  const previousPosition = targetPosition;
+  
+  targetPosition += 1;
+  
+  if (targetPosition < 0) {
+    targetPosition = 0;
+  }
+  clearPreviousPosition(previousPosition, currentFigure.shape);
+  drawShape(currentFigure, targetPosition);
+});
+
+
+<!-- кнопка для руху вліво -->
+let btnLeft = document.querySelector(".btnLeft");
+btnLeft.addEventListener("click", function () {
+  
+  const previousPosition = targetPosition;
+  if(moveOK) {
+  targetPosition -= 1;
+  }
+  clearPreviousPosition(previousPosition, currentFigure.shape);
+  drawShape(currentFigure, targetPosition);
+});
+
+let btnDown = document.querySelector(".btnDown");
+btnDown.addEventListener("click", function () {
+  
+  const previousPosition = targetPosition;
+
+  targetPosition += columns;
+
+  if (targetPosition >= ground - columns) {
+    targetPosition = ground - columns;
+  }
+
+  clearPreviousPosition(previousPosition, currentFigure.shape);
+  drawShape(currentFigure, targetPosition);
+});
+
+
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,157 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #0a3304;
+}
+.wrapper{
+  background: linear-gradient(to bottom, #d5ffbf, #7a4b14);
+  height: 100vh;
+  margin: 0;
+  font-size: 24px; 
+}
+.main{
+    display: flex;
+    justify-content: center;
+    max-width: 96%;
+    margin: auto auto;
+}
+.playGround{
+    display: grid;
+    grid-template-rows: repeat(40, 1fr);
+    grid-template-columns: repeat(20, 1fr);
+    margin: -2px 2px;
+}
+.playGround>div{
+  width: 13px;
+  height: 13px;
+  border: 0.3px #8a8a8a solid;
+}
+.buttons{
+width: 80%;
+ display: flex;
+ justify-content: center;
+ margin: -2px auto;
+ flex-wrap: wrap;
+}
+.mainMenu, .nextFigures{
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 2px;
+}
+.buttons>button{
+    height:35px;
+    width: 28%;
+    margin: 4px 4px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #ffeabf;
+}
+.buttons button, .nextFigureBig, .nextFigureSmall, .admin button, .count .countScore, .count h5{
+    border-radius: 8px;
+    border: 1px solid #0a3304;
+    padding: 5px;
+    box-shadow:2px 2px 4px rgba(0, 0, 0, 1);
+    transition: all 0.3s ease;
+}
+.buttons>button:hover, .nextFigureBig:hover, .nextFigureSmall:hover, .admin button:hover{
+    border-radius: 8px; 
+    border: 2px solid #0a3304; 
+    font-weight: bolder;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);     
+    background-color: rgba(255, 210, 149, 0.8);
+}
+.playGround{
+    border-radius: 10px;
+    border: 4px solid #0a3304;
+    padding: 3px;
+    box-shadow: 5px 5px #475e479f;
+}
+h3, h5, button{
+    text-align: center;
+}
+h3{
+    text-shadow: 2px 2px #475e479f;
+}
+.nextFigureBig{
+    width: 55px;
+    height: 55px;
+    margin: 5vh auto;
+    background-color: #ffeabf;
+}
+.nextFigureSmall{
+    width: 35px;
+    height: 35px;
+    opacity: 70%;
+    margin: 15vh auto 5vh;
+    background-color: #ffeabf;
+}
+.admin button, .count .countScore, .count h5{
+    width: 55px;
+    height: 30px;
+    margin: 2px auto;
+    background-color: #ffeabf;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+h5, .admin button{
+    font-size: 11px;
+    font-weight: bold;
+}
+.admin button:nth-child(2){
+    font-size: 9px;
+    font-weight: bold;
+}
+.count{
+    margin: 15vh auto 5vh;
+}
+.plus{
+    background-color: grey;
+    color: black;
+}
+.color1{
+    background-color: red;
+}
+.color2{
+    background-color:blue;
+}
+.color3{
+    background-color: green;
+}
+.color4{
+    background-color: yellow;
+}
+.color5{
+    background-color:hotpink;
+}
+.minus{
+    background-color: #ffffea;
+}
+@media screen and (min-width: 769px) { 
+.mainMenu, .nextFigures { 
+width: 120px; 
+margin: 40px;
+}
+h3{
+    font-size: 28px;
+    font-weight: bold;
+}
+@media screen and (min-width:1025px){
+    .mainMenu, .nextFigures{
+        width: 150px;
+        margin: 60px;
+    }
+    .buttons{
+        width: 60%;
+        margin: 1% auto;
+    }
+    h3{
+        font-size: 28px;
+        font-weight: bolt;
+    }
+}
+
