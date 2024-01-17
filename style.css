@@ -2,10 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #0a3304;
+  color: linear-gradient(45deg, orange, darkred); 
 }
 .wrapper{
-  background: linear-gradient(to bottom, #d5ffbf, #7a4b14);
+  background: radial-gradient(90% 70% at 10% 10%, #d5ffbf, #7a4b14);
   height: 100vh;
   margin: 0;
   font-size: 24px; 
@@ -20,18 +20,20 @@
     display: grid;
     grid-template-rows: repeat(40, 1fr);
     grid-template-columns: repeat(20, 1fr);
-    margin: -2px 2px;
+    margin: 1px 2px;
 }
 .playGround>div{
-  width: 13px;
-  height: 13px;
-  border: 0.3px #8a8a8a solid;
+  min-width: 14px;
+  height: 14px;
+  border: 0.5px #54455c solid;
+  font-size: 5px;
+  color: transparent;
 }
 .buttons{
 width: 80%;
  display: flex;
  justify-content: center;
- margin: -2px auto;
+ margin: 0.5% auto;
  flex-wrap: wrap;
 }
 .mainMenu, .nextFigures{
@@ -40,59 +42,90 @@ width: 80%;
     flex-direction: column;
     justify-content: flex-start;
     margin: 2px;
+    
 }
 .buttons>button{
-    height:35px;
+    height:45px;
     width: 28%;
-    margin: 4px 4px;
+    margin: 5px 5px;
     font-size: 16px;
     font-weight: bold;
-    background-color: #ffeabf;
+     background: radial-gradient(40% 20% at 20% 20%, #ffeaff, #ffaadf);
 }
-.buttons button, .nextFigureBig, .nextFigureSmall, .admin button, .count .countScore, .count h5{
+.buttons button, .nextFigureBig, .nextFigureSmall, .admin button, .count .countScore, .level, .count h5{
     border-radius: 8px;
-    border: 1px solid #0a3304;
+    border: 1px solid #630862;
     padding: 5px;
-    box-shadow:2px 2px 4px rgba(0, 0, 0, 1);
+    box-shadow:2px 2px 6px rgba(0, 0, 0, 1);
     transition: all 0.3s ease;
 }
-.buttons>button:hover, .nextFigureBig:hover, .nextFigureSmall:hover, .admin button:hover{
+.buttons>button:hover, .nextFigureBig:hover, .nextFigureSmall:hover, .admin button:hover, .visible:hover{
     border-radius: 8px; 
     border: 2px solid #0a3304; 
     font-weight: bolder;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);     
-    background-color: rgba(255, 210, 149, 0.8);
+    background-color: radial-gradient(40% 20% at 20% 20%, #de94c2, #de4aae);
 }
 .playGround{
     border-radius: 10px;
-    border: 4px solid #0a3304;
-    padding: 3px;
-    box-shadow: 5px 5px #475e479f;
+    border: 5px solid #4a005c;
+    padding: 5px;
+    box-shadow: 5px 5px 10px #475e479f;
+    background: radial-gradient(90% 70% at 10% 10%, #FFFFFF, #7b717b);
+
+
 }
 h3, h5, button{
     text-align: center;
 }
 h3{
-    text-shadow: 2px 2px #475e479f;
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: linear-gradient(45deg, orange, darkred); 
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
 .nextFigureBig{
     width: 55px;
     height: 55px;
     margin: 5vh auto;
-    background-color: #ffeabf;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    background: radial-gradient(90% 70% at 10% 10%, #ffb380, #ff3400);
+    color: transparent;
+    
 }
 .nextFigureSmall{
     width: 35px;
     height: 35px;
-    opacity: 70%;
+    opacity: 0.7;
     margin: 15vh auto 5vh;
-    background-color: #ffeabf;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    background: radial-gradient(90% 70% at 10% 10%, #ffb380, #ff3400);
+    color: transparent;
 }
-.admin button, .count .countScore, .count h5{
+.nextFigureSmall>div{
+    width: 5px;
+    height: 5px;
+    
+    font-size: 0.5px;
+}
+.nextFigureBig>div{
+    width: 9px;
+    height: 9px;
+   
+    font-size: 4px;
+}
+.admin button, .count .countScore, .level, .count h5{
     width: 55px;
-    height: 30px;
-    margin: 2px auto;
-    background-color: #ffeabf;
+    height: 35px;
+    margin: 1vh auto;
+    background: radial-gradient(90% 70% at 10% 10%, #ffeabf, #ff7e15);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -102,42 +135,165 @@ h5, .admin button{
     font-size: 11px;
     font-weight: bold;
 }
-.admin button:nth-child(2){
-    font-size: 9px;
+.admin button:nth-child(3){
+    font-size: 8px;
     font-weight: bold;
 }
 .count{
     margin: 15vh auto 5vh;
 }
-.plus{
-    background-color: grey;
-    color: black;
+.color1 {
+    background-color: #002dff;
+    box-shadow: inset -5px -5px 5px #030033;
+    border-radius: 3px;
+    border: 1px solid black;
+    transition: all 0.3s ease;
 }
-.color1{
+
+.color2 {
     background-color: red;
+    box-shadow: inset -5px -5px 5px #250005;
+    border-radius: 3px;
+    border: 1px solid black;
+    transition: all 0.3s ease;
 }
-.color2{
-    background-color:blue;
+
+.color3 {
+    background-color: darkgreen;
+    box-shadow: inset -5px -5px 5px #021600;
+    border-radius: 3px;
+    border: 1px solid black;
+    transition: all 0.3s ease;
 }
-.color3{
-    background-color: green;
+
+.color4 {
+    background-color: #f82bff;
+    box-shadow: inset -5px -5px 5px #280729;
+    border-radius: 3px;
+    border: 1px solid black;
+    transition: all 0.3s ease;
 }
-.color4{
-    background-color: yellow;
+
+.color5 {
+    background-color: #ffe715;
+    box-shadow: inset -5px -5px 5px #41261b;
+    border-radius: 3px;
+    border: 1px solid black;
+    transition: all 0.3s ease;
 }
-.color5{
-    background-color:hotpink;
+.invisible {
+    opacity: 0;
+    transition: opacity 1s, display 1s;
+    display: none;
 }
-.minus{
-    background-color: #ffffea;
+
+.visible {
+  width: 120px;
+  height: 80px;
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  border-radius: 10px;
+  border: 1px solid #630862;
+  padding: 5px;
+  background: radial-gradient(40% 20% at 20% 20%, #ffeaff, #ffaadf);
+  display: block;
+  opacity: 1;
+  box-shadow: 5px 5px 10px #475e479f;
 }
+
+.startGame, .newGame{
+  width: 120px;
+  height: 80px;
+  border: 2px solid #52005c;
+}
+.startGame:hover,  newGame:hover, gameOver:hover, pauseDiv:hover, continueDiv:hover, .name button:hover{
+    box-shadow: 5px 5px 40px #52005c;
+}
+.continueDiv, .name button{
+    height: 35px;
+    width: 120px;
+    border: 2px solid #670b86;
+    margin: 5px auto;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px #475e479f;
+    background: radial-gradient(40% 20% at 20% 20%, #ffeaff, #ffaadf);
+    font-size: 16px;
+    padding: 5px;
+}
+.gameOver{
+    height: 180px;
+    width: 150px;
+}
+.pauseDiv{
+    width: 180px;
+    border: 2px solid #670b86;
+    background: radial-gradient(40% 20% at 20% 20%, #ffeaff, #ffaadf);
+}
+.name{
+    width: 180px;
+    height: 300px;
+}
+#playerName{
+    width: 100px;
+    height: 30px;
+    font-size: 16px;
+    margin: 5px auto;
+    border-radius: 5px;
+}
+img{
+    width: 100px;
+    margin: 0 auto;
+    position: absolute;
+    top: 30%;
+    right: 35%;
+    animation: zoomRotate 2s forwards;
+}
+@keyframes zoomRotate { 
+0% { 
+transform: scale(1) rotate(0deg); 
+} 
+25% { 
+transform: scale(2) rotate(-45deg); 
+} 
+50% { 
+transform: scale(2) rotate(45deg); 
+} 
+75% { 
+transform: scale(1) rotate(0deg); 
+} 
+100% { 
+opacity: 0; 
+} 
+}
+.zoom-rotate {
+ transform: scale(2) rotate(45deg); 
+ }
 @media screen and (min-width: 769px) { 
 .mainMenu, .nextFigures { 
 width: 120px; 
-margin: 40px;
+margin: 40px 60px;
+}
+.nextFigureBig{
+    width: 85px;
+    height: 85px;
+}
+.nextFigureSmall{
+    width: 55px;
+    height: 55px;
+    margin: 10vh auto 5vh;
+}
+.count{
+    margin: 10vh auto 5vh;
+}
+.admin button, .count .countScore, .count h5{
+    width: 75px;
 }
 h3{
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
 }
 @media screen and (min-width:1025px){
@@ -146,11 +302,10 @@ h3{
         margin: 60px;
     }
     .buttons{
-        width: 60%;
-        margin: 1% auto;
+        display: none;
     }
     h3{
-        font-size: 28px;
+        font-size: 24px;
         font-weight: bolt;
     }
 }
